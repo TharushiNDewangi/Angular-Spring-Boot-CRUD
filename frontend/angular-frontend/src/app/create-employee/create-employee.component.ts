@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,21 +12,28 @@ import { Router } from '@angular/router';
 })
 export class CreateEmployeeComponent implements OnInit {
 
+  exform: FormGroup;
   employee: Employee = new Employee();
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
 
   ngOnInit(): void {
-    // this.Form = new FormGroup({
-    //   name: new FormControl(this.hero.name, [
-    //     Validators.required,
-    //     Validators.minLength(4),
-    //     forbiddenNameValidator(/bob/i) // <-- Here's how you pass in the custom validator.
-    //   ]),
-    //   alterEgo: new FormControl(this.hero.alterEgo),
-    //   power: new FormControl(this.hero.power, Validators.required)
-    // });
+    
+  this.exform = new FormGroup({
+    'firstName' : new FormControl(null, Validators.required),
+    'lname' : new FormControl(null, Validators.required),
+    'email' : new FormControl(null, [Validators.required, Validators.email])
+  });
   
+  } 
+  get firstName() {
+    return this.exform.get('firstName');
+  }
+  get email() {
+    return this.exform.get('email');
+  }
+  get lname() {
+    return this.exform.get('lname');
   }
 
   saveEmployee(){
@@ -45,7 +53,5 @@ export class CreateEmployeeComponent implements OnInit {
     this.saveEmployee();
   }
 }
-// function forbiddenNameValidator(arg0: RegExp): import("@angular/forms").ValidatorFn {
-//   throw new Error('Function not implemented.');
-// }
+
 

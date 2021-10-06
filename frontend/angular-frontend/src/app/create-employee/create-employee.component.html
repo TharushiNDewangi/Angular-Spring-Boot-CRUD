@@ -1,37 +1,28 @@
 <p>create-employee works!</p>
 <div class="col-md-6 offset-md-3">
     <h3> Create Employee </h3>
-    <form (ngSubmit) = "onSubmit()">
+    <form  [formGroup]="exform" (ngSubmit) = "onSubmit()">
     
         <div class="form-group">
             <label> First Name</label>
-            <input type="text"  required minlength="4" class ="form-control" id = "firstName"
+            <input formControlName="firstName" type="text"  required minlength="4" class ="form-control" id = "firstName"
                 [(ngModel)] = "employee.firstName" name = "firstName">
-<!-- 
-                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"class="alert">
+                <small *ngIf="firstName?.invalid && firstName?.touched" class="text-danger">First Name is Required</small> 
 
-                    <div *ngIf="firstName.errors?.required">
-                        Name is required.
-                    </div>
-                    <div *ngIf="firstName.errors?.minlength">
-                        Name must be at least 4 characters long.
-                    </div>
-                    <div *ngIf="firstName.errors?.forbiddenName">
-                        Name cannot be Bob.
-                    </div>
-                </div> -->
         </div>
     
         <div class="form-group">
             <label> Last Name</label>
-            <input type="text" class ="form-control" id = "lastName"
+            <input formControlName="lname" type="text" class ="form-control" id = "lastName"
                 [(ngModel)] = "employee.lastName" name = "lastName">
+                <small *ngIf="lname?.invalid && lname?.touched" class="text-danger">Last Name is Required</small>  
         </div>
     
         <div class="form-group">
             <label> Email Id</label>
-            <input type="text" class ="form-control" id = "emailId"
+            <input formControlName="email" type="text" class ="form-control" id = "emailId"
                 [(ngModel)] = "employee.emailId" name = "emailId">
+                <small *ngIf="email?.invalid && email?.touched" class="text-danger">Email is Required</small>
         </div>
     
         <button class = "btn btn-success" type ="submit">Submit</button>

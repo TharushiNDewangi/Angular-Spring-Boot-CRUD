@@ -7,7 +7,9 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { FormsModule} from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component'
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { ReactiveFormsModule } from '@angular/forms'
+
 // rooot component, root model, app model
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
     //3 
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
